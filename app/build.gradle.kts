@@ -62,9 +62,11 @@ dependencies {
     androidTestImplementation("androidx.compose.ui:ui-test-junit4")
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
-    implementation("androidx.compose.material3:material3:1.1.2")
+    implementation("androidx.compose.material3:material3:1.2.0")
     implementation("com.google.android.material:material:1.11.0")
-//    implementation("com.google.android.gms:play-services-ads:22.6.0")
-    implementation("com.google.android.gms:play-services-fitness:22.0.0")
-
+//    implementation("com.google.android.gms:play-services-health:20.0.0")
+    implementation("com.google.android.gms:play-services-auth:20.7.0")
+    implementation("com.google.android.gms:play-services-wearable:18.1.0")
+    implementation("com.google.android.gms:play-services-fitness:21.1.0")
+    implementation("com.google.android.libraries.healthdata:health-data-api:1.0.0-alpha01")
 }

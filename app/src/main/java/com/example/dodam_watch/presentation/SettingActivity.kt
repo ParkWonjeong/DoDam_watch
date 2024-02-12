@@ -59,7 +59,7 @@ fun SettingScreen(activity: ComponentActivity) {
                 // 버튼 추가
                 item {
                     Button(
-                        onClick = {// "설정" 버튼 클릭 시 SettingAccountActivity로 이동
+                        onClick = {// "계정 설정" 버튼 클릭 시 SettingAccountActivity로 이동
                             val intent = Intent(activity, SettingAccountActivity::class.java)
                             activity.startActivity(intent)},
                         modifier = Modifier

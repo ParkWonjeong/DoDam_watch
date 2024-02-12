@@ -94,7 +94,7 @@ fun HomeScreen(babyName: String, activity: ComponentActivity) {
 
                 item {
                     Button(
-                        onClick = {// "건강기록" 버튼 클릭 시 HealthActivity로 이동
+                        onClick = {// "건강 기록" 버튼 클릭 시 HealthActivity로 이동
                             val intent = Intent(activity, HealthActivity::class.java)
                             activity.startActivity(intent)},
                         modifier = Modifier

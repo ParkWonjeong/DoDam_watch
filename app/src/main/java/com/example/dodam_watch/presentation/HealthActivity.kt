@@ -2,6 +2,7 @@
 
 package com.example.dodam_watch.presentation
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -14,6 +15,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Devices
@@ -25,13 +27,13 @@ class HealthActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            HealthScreen()
+            HealthScreen(this)
         }
     }
 }
 
 @Composable
-fun HealthScreen() {
+fun HealthScreen(activity: ComponentActivity) {
     DoDam_watchTheme {
         Box(
             Modifier
@@ -55,7 +57,10 @@ fun HealthScreen() {
                 }
                 item {
                     Button(
-                        onClick = { /* 버튼 클릭 시 동작 */ },
+                        onClick = {
+//                            val intent = Intent(activity, BloodM::class.java)
+//                            activity.startActivity(intent)
+                            },
                         modifier = Modifier
                             .fillMaxWidth()
                             .padding(0.dp),
@@ -66,7 +71,10 @@ fun HealthScreen() {
                     }
 
                     Button(
-                        onClick = { /* 버튼 클릭 시 동작 */ },
+                        onClick = {
+                            val intent = Intent(activity, HeartRateMeasurementActivity::class.java)
+                            activity.startActivity(intent)
+                        },
                         modifier = Modifier
                             .fillMaxWidth()
                             .padding(0.dp),
@@ -88,5 +96,5 @@ fun HealthScreen() {
 @Preview(device = Devices.WEAR_OS_SMALL_ROUND, showSystemUi = true)
 @Composable
 fun HealthScreenPreview() {
-    HealthScreen()
+    HealthScreen(LocalContext.current as ComponentActivity)
 }
