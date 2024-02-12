@@ -7,16 +7,17 @@
 //import androidx.compose.material3.*
 //import androidx.compose.runtime.*
 //import androidx.compose.ui.Modifier
-//import androidx.compose.ui.platform.LocalContext
 //import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 //import androidx.compose.ui.text.input.ImeAction
 //import androidx.compose.ui.unit.dp
 //import com.google.android.gms.auth.api.signin.GoogleSignIn
 //import com.google.android.gms.fitness.Fitness
 //import com.google.android.gms.fitness.FitnessOptions
+//import com.google.android.gms.fitness.data.DataPoint
+//import com.google.android.gms.fitness.data.DataSource
 //import com.google.android.gms.fitness.data.DataType
 //import com.google.android.gms.fitness.data.Field
-//import com.google.android.gms.fitness.data.Value
+//import com.google.android.gms.fitness.data.HealthDataTypes.TYPE_BLOOD_PRESSURE
 //import com.google.android.gms.fitness.request.OnDataPointListener
 //import com.google.android.gms.fitness.request.SensorRequest
 //import kotlinx.coroutines.CoroutineScope
@@ -145,51 +146,30 @@
 //                onDataPointListener
 //            )
 //            .addOnCompleteListener { task ->
-//                if (task.isSuccessful) {                    // 센서가 추가되었습니다.
-//                    // 혈압 측정 시작 메시지를 UI에 표시하거나 다른 작업을 수행
-//                } else {
-//                    // 센서 추가 실패
-//                    // 실패 메시지를 UI에 표시하거나 다른 작업을 수행
-//                }
-//            }
-//
-//        // 혈압 데이터 수집을 위한 리스너 등록
-//        Fitness.getSensorsClient(this, GoogleSignIn.getAccountForExtension(this, fitnessOptions))
-//            .add(
-//                SensorRequest.Builder()
-//                    .setDataType(DataType.TYPE_BLOOD_PRESSURE)
-//                    .setSamplingRate(3, TimeUnit.SECONDS)
-//                    .build(),
-//                onDataPointListener
-//            )
-//            .addOnCompleteListener { task ->
 //                if (task.isSuccessful) {
-//                    // 센서가 추가되었습니다.
-//                    // 혈압 측정 시작 메시지를 UI에 표시하거나 다른 작업을 수행
+//                    // 센서 등록 성공
 //                } else {
-//                    // 센서 추가 실패
-//                    // 실패 메시지를 UI에 표시하거나 다른 작업을 수행
+//                    // 센서 등록 실패
 //                }
 //            }
 //    }
 //
 //    private fun stopMeasurement() {
-//        // 혈압 데이터 수집 중단
-//        Fitness.getSensorsClient(this, GoogleSignIn.getAccountForExtension(this, fitnessOptions))
-//            .remove(onDataPointListener)
-//            .addOnCompleteListener { task ->
-//                if (task.isSuccessful) {
-//                    // 센서가 제거되었습니다.
-//                    // 혈압 측정 중단 메시지를 UI에 표시하거나 다른 작업을 수행
-//                } else {
-//                    // 센서 제거 실패
-//                    // 실패 메시지를 UI에 표시하거나 다른 작업을 수행
+//        onDataPointListener?.let {
+//            // Fit API를 사용하여 혈압 센서 등록 해제
+//            Fitness.getSensorsClient(this, GoogleSignIn.getAccountForExtension(this, fitnessOptions))
+//                .remove(it)
+//                .addOnCompleteListener { task ->
+//                    if (task.isSuccessful) {
+//                        // 센서 해제 성공
+//                    } else {
+//                        // 센서 해제 실패
+//                    }
 //                }
-//            }
+//        }
 //    }
 //
 //    companion object {
-//        private const val GOOGLE_FIT_PERMISSIONS_REQUEST_CODE = 1001
+//        private const val GOOGLE_FIT_PERMISSIONS_REQUEST_CODE = 1
 //    }
 //}
-//

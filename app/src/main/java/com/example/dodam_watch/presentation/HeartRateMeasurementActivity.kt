@@ -90,7 +90,7 @@ class HeartRateMeasurementActivity : ComponentActivity() {
             .addDataType(DataType.TYPE_HEART_RATE_BPM, FitnessOptions.ACCESS_WRITE)
             .build()
 
-        val account = GoogleSignIn.getAccountForExtension(this, fitnessOptions)
+        val account = GoogleSignIn.getLastSignedInAccount(this)
 
         if (!GoogleSignIn.hasPermissions(account, fitnessOptions)) {
             GoogleSignIn.requestPermissions(

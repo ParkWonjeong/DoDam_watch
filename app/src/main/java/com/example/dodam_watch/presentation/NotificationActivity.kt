@@ -12,6 +12,10 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -65,8 +69,12 @@ fun NotificationScreen() {
     }
 }
 
+// NotificationActivity.kt
+
 @Composable
 fun NotificationItem(notification: Notification) {
+    var isExpanded by remember { mutableStateOf(false) }
+
     // 각 알림 아이템
     Column(
         modifier = Modifier
@@ -74,11 +82,14 @@ fun NotificationItem(notification: Notification) {
             .padding(4.dp)
     ) {
         Button(
-            onClick = { /* 버튼 클릭 시 동작 */ },
+            onClick = { isExpanded = !isExpanded },
             modifier = Modifier
                 .fillMaxWidth()
                 .height(45.dp),
-            colors = ButtonDefaults.buttonColors(Color(android.graphics.Color.WHITE)),
+            colors = ButtonDefaults.buttonColors(
+                if (isExpanded) Color(android.graphics.Color.parseColor("#ecd0d0")) else Color.White,
+                contentColor = Color.Black
+            ),
             border = BorderStroke(2.dp, Color(android.graphics.Color.parseColor("#D9D9D9")))
         ) {
             // 버튼 내용
@@ -88,11 +99,24 @@ fun NotificationItem(notification: Notification) {
                 verticalArrangement = Arrangement.Center
             ) {
                 Spacer(modifier = Modifier.height(2.dp))
-                Text(text = notification.content, color = Color.Black, fontSize = 11.sp)
+                Text(text = notification.title, color = Color.Black, fontSize = 11.sp)
             }
+        }
+
+        // 상세 내용 보여주기
+        if (isExpanded) {
+            // 여기에 상세 내용을 보여주는 UI를 추가할 수 있습니다.
+            // 예를 들어, Text 또는 다른 Composable을 사용하여 상세 내용을 표시할 수 있습니다.
+            Text(
+                text = notification.content,
+                color = Color.White,
+                fontSize = 12.sp,
+                modifier = Modifier.padding(start = 16.dp)
+            )
         }
     }
 }
+
 
 
 @Preview(device = Devices.WEAR_OS_SMALL_ROUND, showSystemUi = true)

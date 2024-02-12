@@ -2,6 +2,7 @@
 
 package com.example.dodam_watch.presentation
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -14,6 +15,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Devices
@@ -25,13 +27,13 @@ class SettingAccountActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            SettingAccountScreen()
+            SettingAccountScreen(this)
         }
     }
 }
 
 @Composable
-fun SettingAccountScreen() {
+fun SettingAccountScreen(activity: ComponentActivity) {
     DoDam_watchTheme {
         Box(
             Modifier
@@ -57,7 +59,10 @@ fun SettingAccountScreen() {
                 // 버튼 추가
                 item {
                     Button(
-                        onClick = { /* 버튼 클릭 시 동작 */ },
+                        onClick = {
+                            val intent = Intent(activity, LoginActivity::class.java)
+                            activity.startActivity(intent)
+                        },
                         modifier = Modifier
                             .fillMaxWidth(),
                         colors = ButtonDefaults.buttonColors(Color(android.graphics.Color.WHITE)),
@@ -102,5 +107,5 @@ fun SettingAccountScreen() {
 @Preview(device = Devices.WEAR_OS_SMALL_ROUND, showSystemUi = true)
 @Composable
 fun SettingAccountScreenPreview() {
-    SettingAccountScreen()
+    SettingAccountScreen(LocalContext.current as ComponentActivity)
 }
