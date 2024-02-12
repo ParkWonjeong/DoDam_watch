@@ -2,34 +2,25 @@
 
 package com.example.dodam_watch.presentation
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.wear.compose.material.TimeText
-import com.example.dodam_practice_wearos.presentation.Greeting
-import com.example.dodam_watch.R
 import com.example.dodam_watch.presentation.theme.DoDam_watchTheme
 
 class NotificationActivity : ComponentActivity() {
@@ -47,7 +38,7 @@ fun NotificationScreen() {
         Box(
             Modifier
                 .fillMaxSize()
-                .background(Color(android.graphics.Color.WHITE)),
+                .background(Color(android.graphics.Color.parseColor("#FFB2A5"))),
             contentAlignment = Alignment.Center
         ) {
             LazyColumn {
@@ -87,9 +78,8 @@ fun NotificationItem(notification: Notification) {
             modifier = Modifier
                 .fillMaxWidth()
                 .height(45.dp),
-            colors = ButtonDefaults.buttonColors(Color(android.graphics.Color.parseColor("#F2E8DA"))),
-            shape = MaterialTheme.shapes.small,
-            border = BorderStroke(1.dp, Color(android.graphics.Color.parseColor("#FFB2A5")))
+            colors = ButtonDefaults.buttonColors(Color(android.graphics.Color.WHITE)),
+            border = BorderStroke(2.dp, Color(android.graphics.Color.parseColor("#D9D9D9")))
         ) {
             // 버튼 내용
             Column(

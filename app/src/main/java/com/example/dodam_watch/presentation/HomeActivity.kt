@@ -3,6 +3,7 @@
 package com.example.dodam_watch.presentation
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -18,6 +19,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -26,7 +28,6 @@ import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.wear.compose.material.TimeText
-import com.example.dodam_practice_wearos.presentation.Greeting
 import com.example.dodam_watch.R
 import com.example.dodam_watch.presentation.theme.DoDam_watchTheme
 
@@ -34,7 +35,7 @@ class HomeActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            HomeScreen("babyHome")
+            HomeScreen("babyHome", this)
         }
     }
 }
@@ -42,12 +43,12 @@ class HomeActivity : ComponentActivity() {
 @OptIn(ExperimentalMaterial3Api::class)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
-fun HomeScreen(babyName: String) {
+fun HomeScreen(babyName: String, activity: ComponentActivity) {
     DoDam_watchTheme {
         Box(
             modifier = Modifier
                 .fillMaxSize()
-                .background(Color(android.graphics.Color.parseColor("#D9D9D9"))),
+                .background(Color(android.graphics.Color.parseColor("#FFB2A5"))),
             contentAlignment = Alignment.Center
         ) {
             LazyColumn {
@@ -66,10 +67,10 @@ fun HomeScreen(babyName: String) {
                             .align(Alignment.Center)
                             .offset(y = (-20).dp)
                             .background(
-                                color = Color(android.graphics.Color.parseColor("#FFB2A5")),
+                                color = Color(android.graphics.Color.parseColor("#D9D9D9")),
                                 shape = CircleShape,
                             )
-                            .padding(2.dp)
+                            .padding(3.dp)
                             .clip(CircleShape)
                     )
                     Greeting(babyName = babyName)
@@ -78,12 +79,14 @@ fun HomeScreen(babyName: String) {
                 // 버튼 추가
                 item {
                     Button(
-                        onClick = { /* 버튼 클릭 시 동작 */ },
+                        onClick = {// "알림" 버튼 클릭 시 NotificationActivity로 이동
+                            val intent = Intent(activity, NotificationActivity::class.java)
+                            activity.startActivity(intent)},
                         modifier = Modifier
                             .fillMaxWidth()
                             .padding(0.dp),
-                        colors = ButtonDefaults.buttonColors(Color(android.graphics.Color.parseColor("#F2E8DA"))),
-                        border = BorderStroke(1.dp, Color(android.graphics.Color.parseColor("#FFB2A5")))
+                        colors = ButtonDefaults.buttonColors(Color(android.graphics.Color.WHITE)),
+                        border = BorderStroke(1.dp, Color(android.graphics.Color.parseColor("#D9D9D9")))
                     ) {
                         Text("알림", color = Color.Black)
                     }
@@ -91,12 +94,14 @@ fun HomeScreen(babyName: String) {
 
                 item {
                     Button(
-                        onClick = { /* 버튼 클릭 시 동작 */ },
+                        onClick = {// "건강기록" 버튼 클릭 시 HealthActivity로 이동
+                            val intent = Intent(activity, HealthActivity::class.java)
+                            activity.startActivity(intent)},
                         modifier = Modifier
                             .fillMaxWidth()
                             .padding(0.dp),
-                        colors = ButtonDefaults.buttonColors(Color(android.graphics.Color.parseColor("#F2E8DA"))),
-                        border = BorderStroke(1.dp, Color(android.graphics.Color.parseColor("#FFB2A5")))
+                        colors = ButtonDefaults.buttonColors(Color(android.graphics.Color.WHITE)),
+                        border = BorderStroke(1.dp, Color(android.graphics.Color.parseColor("#D9D9D9")))
                     ) {
                         Text("건강 기록", color = Color.Black)
                     }
@@ -104,12 +109,14 @@ fun HomeScreen(babyName: String) {
 
                 item {
                     Button(
-                        onClick = { /* 버튼 클릭 시 동작 */ },
+                        onClick = {// "설정" 버튼 클릭 시 SettingActivity로 이동
+                            val intent = Intent(activity, SettingActivity::class.java)
+                            activity.startActivity(intent)},
                         modifier = Modifier
                             .fillMaxWidth()
                             .padding(bottom = 50.dp),
-                        colors = ButtonDefaults.buttonColors(Color(android.graphics.Color.parseColor("#F2E8DA"))),
-                        border = BorderStroke(1.dp, Color(android.graphics.Color.parseColor("#FFB2A5")))
+                        colors = ButtonDefaults.buttonColors(Color(android.graphics.Color.WHITE)),
+                        border = BorderStroke(1.dp, Color(android.graphics.Color.parseColor("#D9D9D9")))
                     ) {
                         Text("설정", color = Color.Black)
                     }
@@ -125,7 +132,7 @@ fun Greeting(babyName: String) {
             .fillMaxWidth()
             .padding(top = 130.dp),
         textAlign = TextAlign.Center,
-        color = Color(android.graphics.Color.BLACK),
+        color = Color(android.graphics.Color.WHITE),
         text = stringResource(R.string.babyName),
         // 텍스트의 두께를 조절하는 코드
         fontWeight = FontWeight.Bold
@@ -135,5 +142,5 @@ fun Greeting(babyName: String) {
 @Preview(device = Devices.WEAR_OS_SMALL_ROUND, showSystemUi = true)
 @Composable
 fun HomeScreenPreview() {
-    HomeScreen("babyHome")
+    HomeScreen("babyHome", LocalContext.current as ComponentActivity)
 }
