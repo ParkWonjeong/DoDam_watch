@@ -9,6 +9,7 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
@@ -51,7 +52,7 @@ class HeartRateMeasurementActivity : ComponentActivity() {
             OutlinedTextField(
                 value = heartRate,
                 onValueChange = { heartRate = it },
-                label = { Text("Heart Rate (bpm)") },
+                label = { Text("심박수 (bpm)") },
                 keyboardOptions = KeyboardOptions.Default.copy(
                     imeAction = ImeAction.Done
                 ),
@@ -62,7 +63,7 @@ class HeartRateMeasurementActivity : ComponentActivity() {
                 ),
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(bottom = 16.dp)
+                    .padding(bottom = 16.dp, top = 16.dp)
             )
 
             Button(
@@ -74,16 +75,17 @@ class HeartRateMeasurementActivity : ComponentActivity() {
                     }
                     isMeasuring = !isMeasuring
                 },
-                modifier = Modifier.fillMaxWidth()
+                modifier = Modifier.fillMaxWidth(),
+                colors = ButtonDefaults.buttonColors(Color(android.graphics.Color.parseColor("#FFB2A5")))
             ) {
-                Text(if (isMeasuring) "Stop Measurement" else "Start Measurement")
+                Text(if (isMeasuring) "측정 종료" else "측정 시작")
             }
         }
     }
 
     // 나머지 부분을 여기에 추가 하세요.
     // ...
-    private val GOOGLE_FIT_PERMISSIONS_REQUEST_CODE = 5457
+    private val GOOGLE_FIT_PERMISSIONS_REQUEST_CODE = 1234
     private fun startMeasurement() {
         // Fit API 권한 확인
         val fitnessOptions = FitnessOptions.builder()
