@@ -11,7 +11,9 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.fitness.Fitness
@@ -49,6 +51,15 @@ class HeartRateMeasurementActivity : ComponentActivity() {
                 .fillMaxSize()
                 .padding(16.dp)
         ) {
+            Text(
+                text = "Heart Rate",
+                fontWeight = FontWeight.Bold,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(bottom = 12.dp, top = 13.dp),
+                textAlign = TextAlign.Center
+            )
+
             OutlinedTextField(
                 value = heartRate,
                 onValueChange = { heartRate = it },
@@ -63,7 +74,7 @@ class HeartRateMeasurementActivity : ComponentActivity() {
                 ),
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(bottom = 16.dp, top = 16.dp)
+                    .padding(bottom = 16.dp)
             )
 
             Button(
