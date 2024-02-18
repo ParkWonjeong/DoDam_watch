@@ -73,7 +73,7 @@ fun HomeScreen(babyName: String, activity: ComponentActivity) {
                             )
                             .padding(3.dp)
                             .clip(CircleShape)
-                            .border(3.dp, Color.White, CircleShape)
+                            .border(2.dp, Color.White, CircleShape)
                     )
                     Greeting(babyName = babyName)
                 }}

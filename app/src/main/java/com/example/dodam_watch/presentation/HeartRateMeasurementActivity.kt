@@ -63,7 +63,7 @@ class HeartRateMeasurementActivity : ComponentActivity() {
             OutlinedTextField(
                 value = heartRate,
                 onValueChange = { heartRate = it },
-                label = { Text("심박수 (bpm)") },
+                label = { Text("Heart Rate(bpm)") },
                 keyboardOptions = KeyboardOptions.Default.copy(
                     imeAction = ImeAction.Done
                 ),
@@ -89,7 +89,7 @@ class HeartRateMeasurementActivity : ComponentActivity() {
                 modifier = Modifier.fillMaxWidth(),
                 colors = ButtonDefaults.buttonColors(Color(android.graphics.Color.parseColor("#FFB2A5")))
             ) {
-                Text(if (isMeasuring) "측정 종료" else "측정 시작")
+                Text(if (isMeasuring) "Stop Measuring" else "Start Measuring")
             }
         }
     }

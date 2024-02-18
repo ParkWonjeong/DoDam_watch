@@ -128,9 +128,9 @@ fun NotificationScreenPreview() {
 data class Notification(val title: String, val content: String)
 
 val notificationList = listOf(
-    Notification("알림 1", "오늘은 병원 예약 날이에요!"),
-    Notification("알림 2", "새로운 사진이 등록되었어요!"),
-    Notification("알림 3", "오늘 알람이 설정되었어요!"),
+    Notification("Hospital appointment", "We have to go now!"),
+    Notification("New Information", "There are some new tips!"),
+    Notification("Time for Exercise", "Running Time!"),
     Notification("알림 4", "알림 내용 4"),
     Notification("알림 5", "알림 내용 5"),
 )

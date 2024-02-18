@@ -7,7 +7,7 @@
     <string name="MainTitle">DoDam</string>
     <!-- 아랫 줄 부터는 다 받아 와야 할 내용들
     -->
-    <string name="babyName">도담이</string>
+    <string name="babyName">Dodam</string>
     <string name="AlarmTitle">병원 예약</string>
     <string name="AlarmTime">07:30 AM</string>
     <string name="AlarmInfo">분당서울대학교병원 산부인과</string>
