@@ -1,4 +1,6 @@
 ## DoDam Watch App
+![app image](./app_feature_image.png)
+
 ---
 - Overview
     - Introduction
