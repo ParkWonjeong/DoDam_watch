@@ -6,24 +6,20 @@
       - User can check notifications from the mobile app
       - User can check and record their heart rate and blood pressure. After measuring, those datas are sent to the server to be recorded in mobile mother's notebook.
      
----
 - Dependencies
   - Kotlin
   - Wear OS
   - Fit API
 
----
 - Features
   - Home Screen with Baby's image
   - Notifications
   - Measure Heart Rate and Blood Pressure
   - Settings
 
----
 - How to Run
   - Used Emulator to run this code. My Android Studio version is Hedgehog(2023.1.1 Patch 2). 
 
----
 - Things should be improved
     - language traslation models.
     - connections between DoDam Mobile App.
